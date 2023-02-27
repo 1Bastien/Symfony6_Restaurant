@@ -1,0 +1,76 @@
+@import '~bootstrap/scss/bootstrap';
+@import './variables';
+
+html {
+    color: #FEFBE9;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    background-color: #F0A04B;
+}
+
+footer {
+    background-color: #183A1D;
+    color: #e1eeddc9;
+}
+
+a {
+    text-decoration: none;
+}
+
+main {
+    flex: 1;
+}
+
+.navbar-brand {
+    font-family: $font-family-title;
+    font-weight: $font-weight-normal;
+    font-size: 1.8rem;
+}
+
+.navbar-brand, .nav-link {
+    transition: all .15s;
+}
+
+.login-button {
+    &:hover {
+        color : #F0A04B;
+    }
+}
+
+.nav-conference {
+    display: inline-block;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.lift {
+    transition: box-shadow .25s ease,transform .25s ease;
+
+    &:focus, &:hover {
+        box-shadow: 0 1rem 2.5rem rgba(22,28,45,.1),0 .5rem 1rem -.75rem rgba(22,28,45,.1)!important;
+        transform: translate3d(0, -4px, 0);
+    }
+}
+
+.comment-img {
+    width: 250px;
+    height: 150px;
+
+    img {
+        max-width: 250px;
+        max-height: 150px;
+    }
+}
+
+.comment-text {
+    font-size: 12px;
+    line-height: 15px;
+}

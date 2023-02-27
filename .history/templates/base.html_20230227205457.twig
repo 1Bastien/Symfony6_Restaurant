@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+
+		{% block stylesheets %}
+			<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,600,600i&display=swap" rel="stylesheet"/>
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		<header class="p-2">
+			<div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col d-flex justify-content-start">
+					    <a href="#">
+						<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewbox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<line x1="3" y1="12" x2="21" y2="12"></line>
+							<line x1="3" y1="6" x2="21" y2="6"></line>
+							<line x1="3" y1="18" x2="21" y2="18"></line>
+						</svg>
+					    </a>
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        <a href="#">
+                            <img src="media/logo.png" width="160px">
+                        </a>
+                    </div>
+                    <div class="col d-flex justify-content-lg-end">
+				        <button type="button" class="btn btn-outline-light me-2 login-button">
+                            Se connecter
+                        </button>
+                    </div>
+			    </div>
+		    </div>
+        </header>
+
+        <main role="main" class="container mt-5"> {% block body %}{% endblock %}</main>
+
+        <footer>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md d-block text-center p-1 mt-1">
+					    <h6 class="text-uppercase">contact</h6>
+                        <div class="mt-3">
+                            <img src="media/tel.svg" width="12" class="d-inline">
+                            <p  class="d-inline">00.00.00.00.00</p>
+                            <img src="media/instagram.svg" width="12">
+                        </div>
+                    </div>
+                    <div class="col-md d-block text-center p-1 mt-1">
+                        <h6 class="text-uppercase">horaires</h6>
+                        <div class="mt-3">
+                        </div>
+                    </div>
+                    <div class="col-md d-block text-center p-1 mt-1">
+				        <h6 class="text-uppercase">adresse</h6>
+                        <div class="mt-3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+{% block javascripts %}
+	{{ encore_entry_script_tags('app') }}
+{% endblock %}
+    </body>
+</html>
