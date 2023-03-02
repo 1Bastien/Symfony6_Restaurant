@@ -49,11 +49,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         $this->booking = new ArrayCollection();
     }
 
-    public function __toString(): string
-    {
-        return $this->firstName;
-    }
-
     public function getId(): ?int
     {
         return $this->id;
