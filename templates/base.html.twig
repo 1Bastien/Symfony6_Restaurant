@@ -17,10 +17,10 @@
     <body>
         <header class="p-2">
         <div class="header">
-            <nav class="navbar navbar-expand-md fixed-top">
+            <nav class="navbar navbar-expand-md">
                 <div class="container">
-                    <a class="navbar-brand text-uppercase fw-bold" href="#">
-                        <img src="media/logo.png" width="160px">
+                    <a href="/">
+                        <img src={{ asset('media/logo.png') }} width="160px">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -36,9 +36,16 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/menu">Menu</a>
                             </li>
+                            {% if not app.user %}
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Se connecter</a>
+                                <a class="nav-link" href="/register">Se connecter</a>
                             </li>
+                            {% endif %}
+                            {% if app.user %}
+                            <li class="nav-item">
+                                <a class="nav-link" href={{ path('app_account',{id: app.user.id})}}>Mon compte</a>
+                            </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -46,7 +53,12 @@
             </div>
         </header>
 
-        <main role="main" class="container mt-5"> {% block body %}{% endblock %}</main>
+        <main role="main" class="container mt-5"> 
+            <div class="container-fluid vh-100">
+                {% block body %}
+                {% endblock %}
+            </div>
+        </main>
 
         <footer>
             <div class="container-fluid">
@@ -54,11 +66,11 @@
                     <div class="col-md d-block mt-2 mb-2">
                         <h6 class="text-uppercase">contact</h6>
                         <div>
-                            <img src="media/tel.svg" width="12" class="d-inline">
+                            <img src="{{ asset('media/tel.svg') }}" width="12" class="d-inline">
                             <p  class="d-inline">00.00.00.00.00</p>
                         </div>
                         <div>
-                            <img src="media/instagram.svg" width="12" class="d-inline">
+                            <img src="{{ asset('media/instagram.svg') }}" width="12" class="d-inline">
                             <p  class="d-inline">Quai_Antique</p>
                         </div>
                     </div>

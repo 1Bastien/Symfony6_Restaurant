@@ -1,0 +1,1 @@
+php bin/console dbal:run-sql "UPDATE Customer SET roles = '[\"ROLE_ADMIN\"]' WHERE email = 'admin@admin.com'"

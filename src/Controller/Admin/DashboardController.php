@@ -15,15 +15,16 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        $routeBuilder = $this->container->get(AdminUrlGenerator::class);
-        $url = $routeBuilder->setController(CustomerCrudController::class)->generateUrl();
+        //return parent::index();
 
-        return $this->redirect($url);
+        //$url = $routeBuilder->setController(CustomerCrudController::class)->generateUrl();
+
+        //return $this->redirect($url);
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
-        // $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        // return $this->redirect($adminUrlGenerator->setController(OneOfYourCrudController::class)->generateUrl());
+        $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
+        return $this->redirect($adminUrlGenerator->setController(CustomerCrudController::class)->generateUrl());
 
         // Option 2. You can make your dashboard redirect to different pages depending on the user
         //
@@ -45,7 +46,7 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'home');
-        yield MenuItem::linkToCrud('Customer', 'fas fa-user', Customer::class);
+        yield MenuItem::linkToRoute('Acceuil', 'fa fa-home', 'home');
+        yield MenuItem::linkToCrud('Les clients', 'fas fa-user', Customer::class);
     }
 }

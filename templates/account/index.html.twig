@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Compte{% endblock %}
+
+
+
+{% block body %}
+
+{% if is_granted('ROLE_ADMIN') %}
+    Vous êtes connecté en tant que {{ app.user.Roles[0] }}, <a href="{{ path('admin') }}">Admin</a>
+
+{% endif %}
+<a href="{{ path('app_logout') }}">Déconnection</a>
+{% for message in app.flashes('warning') %}
+<div class="alert alert-warning">
+{{ message }}
+</div>
+{% endfor %}
+<div>
+{% for booking in app.user.booking %}
+    <p>Titre : {{ booking.firstName }}</p>
+{% endfor %}
+</div>
+<div>
+	    {{ form_start(CustomerInfoForm) }}
+		    {{ form_row(CustomerInfoForm.firstname) }}
+		    {{ form_row(CustomerInfoForm.lastname) }}
+		    {{ form_row(CustomerInfoForm.email) }}
+			{{ form_row(CustomerInfoForm.nbGuests) }}
+			<div class="text-center p-3">
+	        	<button type="submit" class="btn btn-outline-success">modifier</button>
+        	</div>
+		{{ form_end(CustomerInfoForm) }}
+	    	
+	</div>
+{% endblock %}
