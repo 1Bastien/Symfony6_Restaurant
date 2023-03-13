@@ -31,9 +31,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column (nullable: true)]
-    private ?bool $upComing = null;
-
     #[ORM\Column(length: 255)]
     private ?string $firstName = null;
 
@@ -124,18 +121,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    public function isUpComing(): ?bool
-    {
-        return $this->upComing;
-    }
-
-    public function setUpComing(bool $upComing): self
-    {
-        $this->upComing = $upComing;
-
-        return $this;
     }
 
     public function getFirstName(): ?string

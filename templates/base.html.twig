@@ -5,8 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <title>
-            {% block title %}Quai Antique
-            {% endblock %}
+            {% block title %}Quai Antique{% endblock %}
         </title>
 
         {% block stylesheets %}
@@ -31,7 +30,7 @@
                                 <a class="nav-link" href="/">Acceuil</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/booking">Réserver</a>
+                                <a class="nav-link" href="/bookingDate">Réserver</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/menu">Menu</a>
@@ -53,39 +52,37 @@
             </div>
         </header>
 
-        <main role="main" class="container mt-5"> 
-            <div class="container-fluid vh-100">
+        <main role="main" class="container-fluid p-4"> 
+            <div class="container min-vh-100">
                 {% block body %}
                 {% endblock %}
             </div>
         </main>
 
-        <footer>
-            <div class="container-fluid">
-                <div class="row text-center p-2">
-                    <div class="col-md d-block mt-2 mb-2">
-                        <h6 class="text-uppercase">contact</h6>
-                        <div>
-                            <img src="{{ asset('media/tel.svg') }}" width="12" class="d-inline">
-                            <p  class="d-inline">00.00.00.00.00</p>
-                        </div>
-                        <div>
-                            <img src="{{ asset('media/instagram.svg') }}" width="12" class="d-inline">
-                            <p  class="d-inline">Quai_Antique</p>
-                        </div>
+        <footer class="footer">
+            <div class="row text-center p-2">
+                <div class="col-md d-block mt-2 mb-2">
+                    <h6 class="text-uppercase">contact</h6>
+                    <div>
+                        <img src="{{ asset('media/tel.svg') }}" width="12" class="d-inline">
+                        <p  class="d-inline">00.00.00.00.00</p>
                     </div>
-                    <div class="col-md d-block mt-2 mb-2">
-                        <h6 class="text-uppercase">horaires</h6>
-                        <p>
-                            Du lundi au dimanche<br />Réservation de 11h00 à 14h00<br />et de 18h00 à 21h00
-                        </p>
+                    <div>
+                        <img src="{{ asset('media/instagram.svg') }}" width="12" class="d-inline">
+                        <p  class="d-inline">Quai_Antique</p>
                     </div>
-                    <div class="col-md d-block mt-2 mb-2">
-                        <h6 class="text-uppercase">adresse</h6>
-                        <p>
-                            3 rue du Restaurant<br />73 000 Chambéry<br />France.
-                        </p>
-                    </div>
+                </div>
+                <div class="col-md d-block mt-2 mb-2">
+                    <h6 class="text-uppercase">horaires</h6>
+                    <p>
+                        Du lundi au dimanche<br />Réservation de 11h00 à 14h00<br />et de 18h00 à 21h00
+                    </p>
+                </div>
+                <div class="col-md d-block mt-2 mb-2">
+                    <h6 class="text-uppercase">adresse</h6>
+                    <p>
+                        3 rue du Restaurant<br />73 000 Chambéry<br />France.
+                    </p>
                 </div>
             </div>
         </footer>

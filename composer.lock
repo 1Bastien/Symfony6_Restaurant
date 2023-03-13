@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0cc2fda64298c3620625c7024a9b31c7",
+    "content-hash": "2ee908535fb6293792c039f7ffd4528b",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -6882,16 +6882,16 @@
         },
         {
             "name": "symfony/validator",
-            "version": "v6.2.5",
+            "version": "v6.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/validator.git",
-                "reference": "0ebfbe384790e61147e3d7f4aa0afbd6190198c4"
+                "reference": "4b3bd0a9545bdf7ebc84f0a494c05219010bb403"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/validator/zipball/0ebfbe384790e61147e3d7f4aa0afbd6190198c4",
-                "reference": "0ebfbe384790e61147e3d7f4aa0afbd6190198c4",
+                "url": "https://api.github.com/repos/symfony/validator/zipball/4b3bd0a9545bdf7ebc84f0a494c05219010bb403",
+                "reference": "4b3bd0a9545bdf7ebc84f0a494c05219010bb403",
                 "shasum": ""
             },
             "require": {
@@ -6970,7 +6970,7 @@
             "description": "Provides tools to validate values",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/validator/tree/v6.2.5"
+                "source": "https://github.com/symfony/validator/tree/v6.2.7"
             },
             "funding": [
                 {
@@ -6986,7 +6986,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-20T17:45:48+00:00"
+            "time": "2023-02-24T10:42:00+00:00"
         },
         {
             "name": "symfony/var-dumper",
@@ -7382,6 +7382,45 @@
                 }
             ],
             "time": "2023-01-10T18:53:53+00:00"
+        },
+        {
+            "name": "twbs/bootstrap-icons",
+            "version": "v1.10.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/icons.git",
+                "reference": "817d780a476dbb24b269a89ba56ff1d0d4125132"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/icons/zipball/817d780a476dbb24b269a89ba56ff1d0d4125132",
+                "reference": "817d780a476dbb24b269a89ba56ff1d0d4125132",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Otto",
+                    "email": "markdotto@gmail.com"
+                }
+            ],
+            "description": "Official open source SVG icon library for Bootstrap",
+            "homepage": "https://icons.getbootstrap.com/",
+            "keywords": [
+                "bootstrap",
+                "icon font",
+                "icons",
+                "svg"
+            ],
+            "support": {
+                "issues": "https://github.com/twbs/icons/issues",
+                "source": "https://github.com/twbs/icons/tree/v1.10.3"
+            },
+            "time": "2022-12-27T05:46:02+00:00"
         },
         {
             "name": "twig/extra-bundle",

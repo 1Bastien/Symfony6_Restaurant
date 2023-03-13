@@ -3,34 +3,44 @@
 {% block title %}Mon Compte{% endblock %}
 
 
-
 {% block body %}
 
-{% if is_granted('ROLE_ADMIN') %}
-    Vous êtes connecté en tant que {{ app.user.Roles[0] }}, <a href="{{ path('admin') }}">Admin</a>
-
-{% endif %}
-<a href="{{ path('app_logout') }}">Déconnection</a>
-{% for message in app.flashes('warning') %}
-<div class="alert alert-warning">
-{{ message }}
-</div>
-{% endfor %}
-<div>
-{% for booking in app.user.booking %}
-    <p>Titre : {{ booking.firstName }}</p>
-{% endfor %}
-</div>
-<div>
-	    {{ form_start(CustomerInfoForm) }}
-		    {{ form_row(CustomerInfoForm.firstname) }}
-		    {{ form_row(CustomerInfoForm.lastname) }}
-		    {{ form_row(CustomerInfoForm.email) }}
-			{{ form_row(CustomerInfoForm.nbGuests) }}
-			<div class="text-center p-3">
-	        	<button type="submit" class="btn btn-outline-success">modifier</button>
-        	</div>
-		{{ form_end(CustomerInfoForm) }}
-	    	
+<div class="container-fluid d-inline-flex justify-content-between mt-2 align-items-center">
+	<div class="d-inline-flex align-items-center">	
+	{% if is_granted('ROLE_ADMIN') %}
+		<h3 class="text-secondary">Vous êtes connecté en tant qu'administrateur du site</h3>
+		<a type="button" href="{{ path('admin') }}" class="btn btn-outline-secondary ms-4">Page d'administration</a>
+	{% else %}
+		<i class="bi bi-person-circle d-inline p-3" style="font-size: 2rem"></i>
+		<h2 class="d-inline">Votre compte</h2>
+	{% endif %}
 	</div>
+	<div class="d-inline">
+		<a type="button" href="{{ path('app_logout') }}" class="btn btn-outline-success">Déconnexion</a>
+	</div>
+</div>
+
+{% if booking %}
+	<div class="mt-5">
+		<h5 class="mb-3">Vos réservation(s) :</h5>
+		{% for booking in app.user.booking %}
+    		<p>Vous avez réservé le {{ booking.date|date("d/m/Y") }} pour {{ booking.nbGuests }} personne(s) à {{ booking.date|date("H:i:s") }}</p>
+		{% endfor %}
+	</div>
+{% endif %}
+
+<div class="mt-5">
+	<h5 class="mb-3">Vos informations :</h5>
+	{{ form_start(CustomerInfoForm) }}
+		{{ form_row(CustomerInfoForm.firstname) }}
+		{{ form_row(CustomerInfoForm.lastname) }}
+		{{ form_row(CustomerInfoForm.email) }}
+		<h5 class="mt-5 mb-3">Vos préférences :</h5>
+		{{ form_row(CustomerInfoForm.nbGuests) }}
+		<div class="text-center p-3">
+	        <button type="submit" class="btn btn-outline-success">Modifier</button>
+        </div>
+	{{ form_end(CustomerInfoForm) }}
+</div>
+
 {% endblock %}

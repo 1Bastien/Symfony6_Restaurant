@@ -2,7 +2,9 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Booking;
 use App\Entity\Customer;
+use App\Entity\Restaurant;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -48,5 +50,7 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToRoute('Acceuil', 'fa fa-home', 'home');
         yield MenuItem::linkToCrud('Les clients', 'fas fa-user', Customer::class);
+        yield MenuItem::linkToCrud('Le restaurant', 'fas fa-utensils', Restaurant::class);
+        yield MenuItem::linkToCrud('Les réservations', 'fas fa-calendar-days', Booking::class);
     }
 }

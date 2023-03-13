@@ -6,8 +6,6 @@ use App\Entity\Customer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CustomerInfoFormType extends AbstractType
@@ -16,7 +14,7 @@ class CustomerInfoFormType extends AbstractType
     {
         $builder
             ->add('email', null, [
-                'label' => 'Email', 
+                'label' => 'Mail',
                 'constraints' => [
                     new NotBlank([
                         'message' => "Merci d'entrer votre email.",
@@ -24,7 +22,7 @@ class CustomerInfoFormType extends AbstractType
                 ]
             ])
             ->add('firstname', null, [
-                'label' => 'Prénom', 
+                'label' => 'Prénom',
                 'constraints' => [
                     new NotBlank([
                         'message' => "Merci d'entrer votre prénom.",
@@ -32,14 +30,16 @@ class CustomerInfoFormType extends AbstractType
                 ]
             ])
             ->add('lastname', null, [
-                'label' => 'Nom', 
+                'label' => 'Nom',
                 'constraints' => [
                     new NotBlank([
                         'message' => "Merci d'entrer votre nom.",
                     ])
                 ]
             ])
-            ->add('nbGuests')
+            ->add('nbGuests', null, [
+                'label' => 'Nombre de personne(s) par défaut',
+            ])
         ;
     }
 

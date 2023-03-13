@@ -39,28 +39,29 @@ class BookingRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Booking[] Returns an array of Booking objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('b')
-//            ->andWhere('b.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('b.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Booking[] Returns an array of Booking objects
+     */
+    public function findByRush($hStart, $hEnd): array
+    {
+        $entityManager = $this->getEntityManager();
 
-//    public function findOneBySomeField($value): ?Booking
-//    {
-//        return $this->createQueryBuilder('b')
-//            ->andWhere('b.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $query = $entityManager->createQuery(
+            'SELECT b
+            FROM App\Entity\Booking b
+            WHERE b.date >= :hStart AND b.date <= :hEnd'
+        )->setParameter('hStart', $hStart)->setParameter('hEnd', $hEnd);
+
+        return $query->getResult();
+    }
+
+    //    public function findOneBySomeField($value): ?Booking
+    //    {
+    //        return $this->createQueryBuilder('b')
+    //            ->andWhere('b.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }
