@@ -14,15 +14,19 @@
         {% endblock %}
     </head>
     <body>
-        <header class="p-2">
-        <div class="header">
+        <header class="header p-2">
             <nav class="navbar navbar-expand-md">
                 <div class="container">
-                    <a href="/">
-                        <img src={{ asset('media/logo.png') }} width="160px">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                    <a href="/"><img src={{ asset('media/logo.png') }} width="160px"></a>
+                    <button 
+                    class="navbar-toggler" 
+                    type="button" 
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#navbarNav" 
+                    aria-controls="#navbarNav" 
+                    aria-expanded="false" 
+                    aria-label="Toggle navigation">
+                        <i class="bi bi-list" style="font-size: 2rem"></i>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                         <ul class="navbar-nav">
@@ -36,20 +40,18 @@
                                 <a class="nav-link" href="/menu">Menu</a>
                             </li>
                             {% if not app.user %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="/register">Se connecter</a>
-                            </li>
-                            {% endif %}
-                            {% if app.user %}
-                            <li class="nav-item">
-                                <a class="nav-link" href={{ path('app_account',{id: app.user.id})}}>Mon compte</a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/register">Se connecter</a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href={{ path('app_account',{id: app.user.id})}}>Mon compte</a>
+                                </li>
                             {% endif %}
                         </ul>
                     </div>
                 </div>
             </nav>
-            </div>
         </header>
 
         <main role="main" class="container-fluid p-4"> 

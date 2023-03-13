@@ -35,24 +35,24 @@
         <h3 class="mb-4">Nos disponibilitées pour ce jour :</h3>
         {% if remainingPlacesLunch < 1 %}
             <div class="d-flex flex-row">
-                <i class="bi bi-x-circle-fill p-1" style="font-size: 1.1rem"></i>
+                <i class="bi bi-x-circle-fill p-1" style="font-size: 1.1rem; color: red"></i>
                 <p class="p-1">Nous n'avons plus de place ce midi</p>
             </div>
         {% else %}
             <div class="d-flex flex-row">
-                <i class="bi bi-check-circle-fill p-1" style="font-size: 1.1rem"></i>
+                <i class="bi bi-check-circle-fill p-1" style="font-size: 1.1rem; color: green"></i>
                 <p class="p-1">Il reste {{ remainingPlacesLunch }} place(s) ce midi</p>
             </div>
         {% endif %}
 
         {% if remainingPlacesDinner < 1 %}
             <div class="d-flex flex-row">
-                <i class="bi bi-x-circle-fill p-1" style="font-size: 1.1rem"></i>
+                <i class="bi bi-x-circle-fill p-1" style="font-size: 1.1rem; color: red"></i>
                 <p class="p-1">Nous n'avons plus de place ce soir</p>
             </div>
         {% else %}
             <div class="d-flex flex-row">
-                <i class="bi bi-check-circle-fill p-1" style="font-size: 1.1rem"></i>
+                <i class="bi bi-check-circle-fill p-1" style="font-size: 1.1rem; color: green"></i>
                 <p class="p-1">Il reste {{ remainingPlacesDinner }} place(s) ce soir</p>
             </div>
         {% endif %}
