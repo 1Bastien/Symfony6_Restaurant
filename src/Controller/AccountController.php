@@ -38,7 +38,7 @@ class AccountController extends AbstractController
             $manager->persist($customer);
             $manager->flush();
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('app_account', ['id' => $customer->getId()]);
         }
 
         return $this->render('account/index.html.twig', [

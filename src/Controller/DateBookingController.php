@@ -11,12 +11,11 @@ use App\Entity\Booking;
 use App\Entity\Restaurant;
 use App\Entity\Customer;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class DateBookingController extends AbstractController
 {
     #[Route('/bookingDate', name: 'booking')]
-    public function index(Request $request, EntityManagerInterface $manager, UserInterface $user)
+    public function index(Request $request, EntityManagerInterface $manager)
     {
         $date = new \DateTimeImmutable();
 
@@ -26,9 +25,8 @@ class DateBookingController extends AbstractController
         $nbGuests = 1;
 
         if ($this->getUser()){
-            $indentifier = $user->getUserIdentifier();
-            $customer = $manager->getRepository(Customer::class)->findByEmail($indentifier);
-            $nbGuests = $customer[0]->getNbGuests();
+            $customer = $manager->getRepository(Customer::class)->find($this->getUser());
+            $nbGuests = $customer->getNbGuests();
         }
         
         $selectDate = false;
