@@ -1,9 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Accueil
+{% endblock %}
 
 {% block body %}
-	<div class="body">
-		<h2>Bonjour !</h2>
+	<div id="oui">
+		<div id="BgHome" class="d-flex align-items-center justify-content-center">
+			<a href="/bookingDate">
+				<button type="button" class="btn-home btn btn-lg">Réserver</button>
+			</a>
+		</div>
+		<div class="row">
+			<div class="col-md d-block align-self-center">
+				<div class="p-5 text-center">
+					<h3 class="mb-4">Formule unique à volonté<strong>Raclette Savoyarde</strong></h3>
+					<p>
+						Pour une petite faim ou une énorme envie de fromage, la formule à volonté est LA FORMULE pour tous. Réservez dès maintenant, car le nombre de places est limité. Aucune limite par contre à la gourmandise.
+					</p>
+					<p class="text-secondary">19,90€ par personne</p>
+				</div>
+			</div>
+			<div id="BgMenu" class="col-md"></div>
+		</div>
+		<div class="row">
+			<div id="BgInfo" class="col-md"></div>
+			<div class="col-md d-block align-self-center text-center text-justify">
+				<div class="p-3">
+					<h3>Le Fromage</h3>
+					<p>
+						Nous avons à cœur de sélectionner pour vous du fromage de qualité pour un plaisir gustatif à la hauteur de ce que nous attendons pour vous. Le lait de notre fromage à raclette que nous vous proposons est à 100 % des montagnes d'Auvergne avec 8 semaines d'affinage minimum. Vous trouverez également du fromage de chèvre et du Roquefort pour une expérience gustative unique.
+					</p>
+				</div>
+				<div class="p-3">
+					<h3>La Charcuterie</h3>
+					<p>
+						Jambon de porc origine France, sans conservateur. Chorizo doux ou fort, rosette, jambon blanc et bien d'autres produits de qualité à cuire à votre goût à la bougie.
+					</p>
+				</div>
+			</div>
+		</div>
 	</div>
 {% endblock %}

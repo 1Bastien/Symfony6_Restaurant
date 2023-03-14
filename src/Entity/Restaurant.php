@@ -21,9 +21,6 @@ class Restaurant
     #[ORM\Column]
     private ?int $seatingCapacity = null;
 
-    #[ORM\Column]
-    private ?int $seatsFilled = null;
-
     #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Booking::class, orphanRemoval: true)]
     private Collection $booking;
 
@@ -57,18 +54,6 @@ class Restaurant
     public function setSeatingCapacity(int $seatingCapacity): self
     {
         $this->seatingCapacity = $seatingCapacity;
-
-        return $this;
-    }
-
-    public function getSeatsFilled(): ?int
-    {
-        return $this->seatsFilled;
-    }
-
-    public function setSeatsFilled(int $seatsFilled): self
-    {
-        $this->seatsFilled = $seatsFilled;
 
         return $this;
     }

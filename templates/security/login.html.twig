@@ -3,12 +3,14 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
+<main role="main" class="container-fluid p-4"> 
+<div class="container min-vh-100">   
+
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
-
-    <h2 class="mb-4">Connectez vous !</h2>
+    <h2 class="mb-4">Connexion</h2>
     <div class="mb-4">
         <label for="inputEmail">Mail</label>
         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
@@ -17,13 +19,12 @@
         <label for="inputPassword">Mot de passe</label>
         <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
     </div>
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
     <div class="d-block text-center">
-    <button class="btn btn-outline-success" type="submit">
-        Connexion
-    </button>
+        <button class="btn btn-outline-success" type="submit">Connexion</button>
     </div>
 </form>
+
+</div>
+</main>
 {% endblock %}

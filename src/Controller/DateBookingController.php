@@ -9,12 +9,14 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\DateBookingFormType;
 use App\Entity\Booking;
 use App\Entity\Restaurant;
+use App\Entity\Customer;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class DateBookingController extends AbstractController
 {
     #[Route('/bookingDate', name: 'booking')]
-    public function index(Request $request, EntityManagerInterface $manager)
+    public function index(Request $request, EntityManagerInterface $manager, UserInterface $user)
     {
         $date = new \DateTimeImmutable();
 
@@ -22,6 +24,13 @@ class DateBookingController extends AbstractController
         $formDate->handleRequest($request);
 
         $nbGuests = 1;
+
+        if ($this->getUser()){
+            $indentifier = $user->getUserIdentifier();
+            $customer = $manager->getRepository(Customer::class)->findByEmail($indentifier);
+            $nbGuests = $customer[0]->getNbGuests();
+        }
+        
         $selectDate = false;
         $validDate = false;
         $remainingPlacesLunch = 0;

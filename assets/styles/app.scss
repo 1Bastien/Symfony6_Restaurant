@@ -12,9 +12,47 @@ body {
     height: 100vh;
 }
 
-.navbar.navbar-expand-md.fixed-top {
+.navbar.navbar-expand-md {
     background-color: #f0A04B;
-  }
+}
+
+#BgHome {
+    background-image: url(../../public/media/bg-home.jpg);
+    min-height: 100vh;
+    width: auto;
+    background-size: cover;
+    background-position: center;
+}
+
+#BgMenu {
+    background-image: url(../../public/media/bg-menu.jpg);
+    max-height: 50vh;
+    background-size: cover;
+    background-position: center;
+    aspect-ratio: 1 / 1;
+}
+
+#oui {
+    background-color: #FEFBE9;
+}
+
+#BgInfo {
+    background-image: url(../../public/media/bg-info.jpg);
+    max-height: 50vh;
+    background-size: cover;
+    background-position: center;
+    aspect-ratio: 1 / 1;
+}
+
+.btn-home {
+    color: #FEFBE9;
+    background-color: $success;
+}
+
+.btn-home:hover {
+    background-color: black;
+    color: #FEFBE9;
+}
 
 header {
     background-color: #f0A04B;

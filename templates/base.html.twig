@@ -36,9 +36,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/bookingDate">Réserver</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/menu">Menu</a>
-                            </li>
                             {% if not app.user %}
                                 <li class="nav-item">
                                     <a class="nav-link" href="/register">Se connecter</a>
@@ -48,18 +45,19 @@
                                     <a class="nav-link" href={{ path('app_account',{id: app.user.id})}}>Mon compte</a>
                                 </li>
                             {% endif %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href={{ path('admin') }}>Page d'administration</a>
+                                </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
             </nav>
         </header>
 
-        <main role="main" class="container-fluid p-4"> 
-            <div class="container min-vh-100">
-                {% block body %}
-                {% endblock %}
-            </div>
-        </main>
+        {% block body %}
+        {% endblock %}
 
         <footer class="footer">
             <div class="row text-center p-2">

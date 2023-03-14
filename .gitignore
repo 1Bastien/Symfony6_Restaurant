@@ -29,4 +29,4 @@ yarn-error.log
 /public/media/
 
 .DS_Store
-/.history/
+.history

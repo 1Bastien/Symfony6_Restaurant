@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use DateTime;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,6 +21,7 @@ class DateBookingFormType extends AbstractType
                 'widget' => 'single_text',
                 'input'  => 'datetime_immutable',
                 'label' => 'Date',
+                'attr'  => ['min' => date('Y-m-d')],
             ])
             ->add('hour', ChoiceType::class, [
                 'choices'  => [
