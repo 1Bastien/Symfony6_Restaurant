@@ -17,22 +17,55 @@ body {
 }
 
 #BgHome {
-    background-image: url(../../public/media/bg-home.jpg);
     min-height: 100vh;
     width: auto;
     background-size: cover;
     background-position: center;
+    position: relative;
+}
+
+#BgHome img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100vw;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.85) blur(1px);
+    overflow: hidden;
+}
+
+#BgHome a {
+    z-index: 99;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#BgHome i {
+    font-size: 5rem; 
+    z-index: 100; 
+    color: #FEFBE9;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -150%);
 }
 
 #BgMenu {
     background-image: url(../../public/media/bg-menu.jpg);
     max-height: 50vh;
+    max-width: 100%;
     background-size: cover;
     background-position: center;
     aspect-ratio: 1 / 1;
+    height: 100%;
+    overflow-x: hidden;
 }
 
-#oui {
+#bg-body {
     background-color: #FEFBE9;
 }
 
@@ -56,6 +89,7 @@ body {
 
 header {
     background-color: #f0A04B;
+    z-index: 999;
 }
 
 footer {
