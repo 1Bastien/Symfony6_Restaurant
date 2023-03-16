@@ -4,8 +4,10 @@ namespace App\Form;
 
 use App\Entity\Booking;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class BookingFormType extends AbstractType
 {
@@ -13,13 +15,25 @@ class BookingFormType extends AbstractType
     {
         $builder
             ->add('firstName', null, [
-                'label' => 'Prénom',
+                'label' => 'Prénom', 'constraints' => [
+                    new NotBlank([
+                        'message' => "Merci d'entrer votre prénom.",
+                    ])
+                ]
             ])
             ->add('lastName', null, [
-                'label' => 'Nom de famille',
+                'label' => 'Nom de famille', 'constraints' => [
+                    new NotBlank([
+                        'message' => "Merci d'entrer votre nom.",
+                    ])
+                ]
             ])
-            ->add('mail', null, [
-                'label' => 'Mail',
+            ->add('mail', EmailType::class, [
+                'label' => 'Mail', 'constraints' => [
+                    new NotBlank([
+                        'message' => "Merci d'entrer votre mail.",
+                    ])
+                ]
             ])
         ;
     }
