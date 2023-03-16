@@ -26,7 +26,6 @@ npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
-/public/media/
 
 .DS_Store
 .history
