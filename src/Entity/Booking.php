@@ -16,6 +16,7 @@ class Booking
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\NotBlank]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column]
@@ -23,12 +24,16 @@ class Booking
     private ?int $nbGuests = null;
 
     #[ORM\Column(nullable: true, length: 255)]
+    #[Assert\NotBlank]
     private ?string $firstName = null;
 
     #[ORM\Column(nullable: true, length: 255)]
+    #[Assert\NotBlank]
     private ?string $lastName = null;
 
     #[ORM\Column(nullable: true, length: 255)]
+    #[Assert\Email]
+    #[Assert\NotBlank]
     private ?string $mail = null;
 
     #[ORM\ManyToOne(inversedBy: 'booking')]

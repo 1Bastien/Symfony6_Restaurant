@@ -4,6 +4,9 @@ namespace App\Form;
 
 use App\Entity\Customer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -13,7 +16,7 @@ class CustomerInfoFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', null, [
+            ->add('email', EmailType::class, [
                 'label' => 'Mail',
                 'constraints' => [
                     new NotBlank([
@@ -21,7 +24,7 @@ class CustomerInfoFormType extends AbstractType
                     ])
                 ]
             ])
-            ->add('firstname', null, [
+            ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
                 'constraints' => [
                     new NotBlank([
@@ -29,7 +32,7 @@ class CustomerInfoFormType extends AbstractType
                     ])
                 ]
             ])
-            ->add('lastname', null, [
+            ->add('lastname', TextType::class, [
                 'label' => 'Nom',
                 'constraints' => [
                     new NotBlank([
@@ -37,8 +40,9 @@ class CustomerInfoFormType extends AbstractType
                     ])
                 ]
             ])
-            ->add('nbGuests', null, [
-                'label' => 'Nombre de personne(s) par défaut',
+            ->add('nbGuests', IntegerType::class, [
+                'attr' => ['min' => 1], 
+                'label' => 'Nombre de couverts'
             ])
         ;
     }

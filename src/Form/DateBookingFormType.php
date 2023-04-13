@@ -45,8 +45,14 @@ class DateBookingFormType extends AbstractType
                 ],
                 'label' => 'Minutes',
             ])
-            ->add('nbGuests', IntegerType::class, ['attr' => ['min' => 1], 'label' => 'Nombre de couverts'])
-            ->add('save', SubmitType::class, ['attr' => ['class' => 'btn-outline-success '], 'label' => 'Rechercher'])
+            ->add('nbGuests', IntegerType::class, [
+                'attr' => ['min' => 1], 
+                'label' => 'Nombre de couverts'
+            ])
+            ->add('save', SubmitType::class, [
+                'attr' => ['class' => 'btn-outline-success '], 
+                'label' => 'Rechercher'
+            ])
         ;
     }
 
