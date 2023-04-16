@@ -10,12 +10,13 @@ use App\Form\DateBookingFormType;
 use App\Entity\Booking;
 use App\Entity\Restaurant;
 use App\Entity\Customer;
+use App\Repository\RestaurantRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class DateBookingController extends AbstractController
 {
     #[Route('/bookingDate', name: 'booking')]
-    public function index(Request $request, EntityManagerInterface $manager)
+    public function index(Request $request, EntityManagerInterface $manager, RestaurantRepository $restaurantRepository)
     {
         $date = new \DateTimeImmutable();
 
@@ -81,6 +82,7 @@ class DateBookingController extends AbstractController
             'remainingPlacesDinner' => $remainingPlacesDinner,
             'date' => $date->format('d-m-Y H:i:s'),
             'nbGuests' => $nbGuests,
+            'Restaurant' => $restaurantRepository->findAll(),
         ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Booking;
 use App\Entity\Customer;
 use App\Form\CustomerInfoFormType;
+use App\Repository\RestaurantRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AccountController extends AbstractController
 {
     #[Route('/account/{id}', name: 'app_account', methods: ['GET', 'POST'])]
-    public function edit(Customer $customer, Request $request, EntityManagerInterface $manager): Response
+    public function edit(Customer $customer, Request $request, EntityManagerInterface $manager, RestaurantRepository $restaurantRepository): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
@@ -44,6 +45,7 @@ class AccountController extends AbstractController
         return $this->render('account/index.html.twig', [
             'CustomerInfoForm' => $form->createView(),
             'booking' => $nbBooking,
+            'Restaurant' => $restaurantRepository->findAll(),
         ]);
     }
 }

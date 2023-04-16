@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RestaurantRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -26,6 +27,9 @@ class Restaurant
 
     #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Booking::class, orphanRemoval: true)]
     private Collection $booking;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $OpeningTime = null;
 
     public function __construct()
     {
@@ -87,6 +91,18 @@ class Restaurant
                 $booking->setRestaurant(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOpeningTime(): ?string
+    {
+        return $this->OpeningTime;
+    }
+
+    public function setOpeningTime(?string $OpeningTime): self
+    {
+        $this->OpeningTime = $OpeningTime;
 
         return $this;
     }

@@ -61,7 +61,7 @@
 
         <footer class="footer container-fluid p-4">
             <div class="row text-center p-2">
-                <div class="col-md d-block mt-2 mb-2">
+                <div class="col-md-5 d-block mt-2 mb-2">
                     <h6 class="text-uppercase">contact</h6>
                     <div>
                         <img src="{{ asset('media/tel.svg') }}" width="12" class="d-inline">
@@ -72,13 +72,13 @@
                         <p  class="d-inline">Quai_Antique</p>
                     </div>
                 </div>
-                <div class="col-md d-block mt-2 mb-2">
+                <div class="col-md-2 d-block mt-2 mb-2">
                     <h6 class="text-uppercase">horaires</h6>
                     <p>
-                        Du lundi au dimanche<br />Réservation de 11h00 à 14h00<br />et de 18h00 à 21h00
+                        {{ Restaurant[0].OpeningTime}}
                     </p>
                 </div>
-                <div class="col-md d-block mt-2 mb-2">
+                <div class="col-md-5 d-block mt-2 mb-2">
                     <h6 class="text-uppercase">adresse</h6>
                     <p>
                         3 rue du Restaurant<br />73 000 Chambéry<br />France.

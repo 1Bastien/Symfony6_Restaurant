@@ -9,13 +9,14 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Form\BookingFormType;
 use App\Entity\Booking;
 use App\Entity\Restaurant;
+use App\Repository\RestaurantRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class BookingController extends AbstractController
 {
     #[Route('/booking/{date}/{nbGuests}', name: 'booking_customer')]
-    public function bookingCustomer(int $nbGuests, string $date, Request $request, EntityManagerInterface $manager): Response
+    public function bookingCustomer(int $nbGuests, string $date, Request $request, EntityManagerInterface $manager, RestaurantRepository $restaurantRepository): Response
     {
         $booking = new Booking();
         $dateTime = new \DateTime($date);
@@ -41,6 +42,7 @@ class BookingController extends AbstractController
 
         return $this->render('booking/index.html.twig', [
             'BookingFormType' => $form->createView(),
+            'Restaurant' => $restaurantRepository->findAll(),
         ]);
     }
 }
