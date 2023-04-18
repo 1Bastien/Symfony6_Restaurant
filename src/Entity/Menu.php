@@ -40,7 +40,6 @@ class Menu
     private ?string $price = null;
 
     #[ORM\Column]
-    #[Assert\NotBlank()]
     private ?bool $available = null;
 
     public function getId(): ?int
