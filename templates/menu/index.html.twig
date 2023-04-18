@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Menu{% endblock %}
+
+{% block body %}
+<main id="bg-menu" role="main" class="main container-fluid p-4">
+<div class="container-fluid min-vh-100">
+
+	{% for key, menu in menus %}
+		{% if menu.available %}
+			{% if loop.index % 2 %}
+				<div id="MenuOdd" class="row flex-md-row m-2 mb-5">
+					<div id="bg-imageOdd" class="col-md">
+						<img src="{{ vich_uploader_asset(menu) }}" alt="{{ menu.name }}">
+					</div>
+					<div id="textOdd" class="col-md d-block align-self-center">
+						<div class="p-5 text-center">
+							<h3 class="mb-4">{{ menu.name }}</h3>
+							<p>{{ menu.description }}</p>
+							<p class="text-secondary">{{ menu.price }}€ par personne</p>
+						</div>
+					</div>
+				</div>
+			{% else %}
+				<div id="MenuEven" class="row flex-md-row m-2 mb-5">
+					<div id="bg-imageEven" class="col-md order-md-2">
+						<img src="{{ vich_uploader_asset(menu) }}" alt="{{ menu.name }}">
+					</div>
+					<div id="textEven" class="col-md d-block align-self-center order-md-1">
+						<div class="p-5 text-center">
+							<h3 class="mb-4">{{ menu.name }}</h3>
+							<p>{{ menu.description }}</p>
+							<p class="text-secondary">{{ menu.price }}€ par personne</p>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+		{% endif %}
+	{% endfor %}
+
+</div>
+</main>
+{% endblock %}

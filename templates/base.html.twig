@@ -36,6 +36,9 @@
                             <li class="nav-item">
                                 <a class="nav-link text-light" href="/bookingDate">Réserver</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="/menu">Menu</a>
+                            </li>
                             {% if not app.user %}
                                 <li class="nav-item">
                                     <a class="nav-link text-light" href="/register">Se connecter</a>
@@ -75,7 +78,7 @@
                 <div class="col-md-2 d-block mt-2 mb-2">
                     <h6 class="text-uppercase">horaires</h6>
                     <p>
-                        {{ Restaurant[0].OpeningTime}}
+                       {{ Restaurant[0].OpeningTime}}
                     </p>
                 </div>
                 <div class="col-md-5 d-block mt-2 mb-2">
