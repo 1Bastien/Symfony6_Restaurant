@@ -12,7 +12,7 @@ Dans le repertoire souhaité de votre local :
 git clone (URL de ce repo)
 ```
 
-Changez le nom du fichier "env.local.text" par ".env.local".
+Changez le nom du fichier "env.local.text" par ".env.local".  
 Modifier le pour y mettre vos identifiants MAMP. 
 
 Ensuite tapez les commandes :
@@ -23,6 +23,7 @@ composer install
 php bin/console doctrine:database:create
 php bin/console make:migration
 php bin/console doctrine:migrations:migrate
+php bin/console doctrine:fixtures:load
 ```
 
 Le projet est prêt à être lancé, vous pouvez démarrer le serveur symfony avec :
@@ -30,19 +31,8 @@ Le projet est prêt à être lancé, vous pouvez démarrer le serveur symfony av
 symfony serve:start
 ```
 
-Pour finir d'initialiser le projet il faut créer l'administrateur pour créer le restaurant en base de donnée. 
-Aller sur le site et créez un compte avec :
-
-* Prénom : admin
-* Nom : admin
-* Mail : admin@admin.com
-* Mot de passe : "Choisirmdp"
-
-Ensuite, copiez/collez la commande disponible dans le fichier SetAdmin.text dans votre invite de commande.
-Le compte est à présent administateur. 
-
-Dans le DashBoard admin, vous devez créer un nouveaux restaurant (Vous pouvez choisir les valeurs):
-* name: "Quai Antique"
-* seatingCapacity: 100
+Un Restaurant ainsi qu'un admin ont été créé, les identifiants pour se connecter sont :  
+ID: admin@admin.com  
+MDP: adminadmin
 
 C'est prêt, vous pouvez maintenant parcourir le site, réserver et créer votre compte utilisateur.
