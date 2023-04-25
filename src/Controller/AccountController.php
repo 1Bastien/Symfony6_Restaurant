@@ -20,13 +20,6 @@ class AccountController extends AbstractController
         $customer = new Customer();
         $customer = $this->getUser();
 
-        if (!$this->getUser()) {
-            return $this->redirectToRoute('app_login');
-        }
-        if ($this->getUser() !== $customer) {
-            return $this->redirectToRoute('home');
-        }
-
         $nbBooking = false;
         $booking = $manager->getRepository(Booking::class)->findByCustomer($customer);
 
