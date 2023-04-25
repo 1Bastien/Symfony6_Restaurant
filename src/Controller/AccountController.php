@@ -14,9 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AccountController extends AbstractController
 {
-    #[Route('/account/{id}', name: 'app_account', methods: ['GET', 'POST'])]
-    public function edit(Customer $customer, Request $request, EntityManagerInterface $manager, RestaurantRepository $restaurantRepository): Response
+    #[Route('/account', name: 'app_account')]
+    public function edit(Request $request, EntityManagerInterface $manager, RestaurantRepository $restaurantRepository): Response
     {
+        $customer = new Customer();
+        $customer = $this->getUser();
+
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
         }

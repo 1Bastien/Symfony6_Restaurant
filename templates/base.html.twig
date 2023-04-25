@@ -45,7 +45,7 @@
                                 </li>
                             {% else %}
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" href={{ path('app_account',{id: app.user.id})}}>Mon compte</a>
+                                    <a class="nav-link text-light" href="/account">Mon compte</a>
                                 </li>
                             {% endif %}
                             {% if is_granted('ROLE_ADMIN') %}
