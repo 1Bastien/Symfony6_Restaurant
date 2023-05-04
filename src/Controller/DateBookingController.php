@@ -11,6 +11,7 @@ use App\Entity\Booking;
 use App\Entity\Restaurant;
 use App\Entity\Customer;
 use App\Repository\RestaurantRepository;
+
 use Doctrine\ORM\EntityManagerInterface;
 
 class DateBookingController extends AbstractController
@@ -18,28 +19,27 @@ class DateBookingController extends AbstractController
     #[Route('/bookingDate', name: 'booking')]
     public function index(Request $request, EntityManagerInterface $manager, RestaurantRepository $restaurantRepository)
     {
-        $date = new \DateTimeImmutable();
-
         $formDate = $this->createForm(DateBookingFormType::class);
         $formDate->handleRequest($request);
-
+        
+        $date = new \DateTimeImmutable();
         $nbGuests = 1;
 
-        if ($this->getUser()){
-            $customer = $manager->getRepository(Customer::class)->find($this->getUser());
-            $nbGuests = $customer->getNbGuests();
-        }
-        
-        $selectDate = false;
-        $validDate = false;
         $remainingPlacesLunch = 0;
         $remainingPlacesDinner = 0;
         $rush = '';
+        
+        $selectDate = false;
+        $validDate = false;
+
+        if ($this->getUser()){
+            $nbGuests = $manager->getRepository(Customer::class)->find($this->getUser())->getNbGuests();
+        }
 
         if ($formDate->isSubmitted() && $formDate->isValid()) {
 
-            $hour = $formDate->getData()['hour'];
-            $minute = $formDate->getData()['minutes'];
+            $hour = substr($formDate->getData()['hour'], 0, 2);
+            $minute = substr($formDate->getData()['hour'], 3, 2);
             $date = $formDate->getData()['date']->setTime($hour, $minute);
             $nbGuests = $formDate->getData()['nbGuests'];
 
@@ -61,9 +61,9 @@ class DateBookingController extends AbstractController
             $remainingPlacesLunch = $seatingCapacity - $totalGuestsLunch;
             $remainingPlacesDinner = $seatingCapacity - $totalGuestsDinner;
 
-            if ($hour === 12 || $hour === 13) {
+            if ($hour === '12' || $hour === '13') {
                 $rush = 'lunch';
-            } else if ($hour === 19 || $hour === 20) {
+            } else if ($hour === '19' || $hour === '20') {
                 $rush = 'dinner';
             }
 
@@ -76,12 +76,12 @@ class DateBookingController extends AbstractController
 
         return $this->render('date_booking/index.html.twig', [
             'DateBookingFormType' => $formDate->createView(),
-            'selectDate' => $selectDate,
-            'validDate' => $validDate,
-            'remainingPlacesLunch' => $remainingPlacesLunch,
-            'remainingPlacesDinner' => $remainingPlacesDinner,
             'date' => $date->format('d-m-Y H:i:s'),
             'nbGuests' => $nbGuests,
+            'remainingPlacesLunch' => $remainingPlacesLunch,
+            'remainingPlacesDinner' => $remainingPlacesDinner,
+            'selectDate' => $selectDate,
+            'validDate' => $validDate,
             'Restaurant' => $restaurantRepository->findAll(),
         ]);
     }
