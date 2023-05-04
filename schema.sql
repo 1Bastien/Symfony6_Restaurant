@@ -1,7 +1,7 @@
 CREATE TABLE booking
 (
     booking_id             int(11)  NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    customer_id            int(11)      DEFAULT NULL,
+    customer_id            int(11)  DEFAULT NULL,
     restaurant_id          int(11)  NOT NULL,
     booking_datetime       datetime NOT NULL,
     nb_guests              int(11)  NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE customer
     pass               varchar(255) NOT NULL,
     first_name         varchar(35)  NOT NULL,
     last_name          varchar(35)  NOT NULL,
-    favorite_nb_guests int(11)                          DEFAULT NULL,
+    favorite_nb_guests int(11)      DEFAULT NULL,
 
     CONSTRAINT ck_customer_nb_guests CHECK (favorite_nb_guests > 0)
 );
@@ -33,7 +33,7 @@ CREATE TABLE restaurant
     restaurant_id    int(11)      NOT NULL PRIMARY KEY AUTO_INCREMENT,
     restaurant_name  varchar(255) NOT NULL,
     seating_capacity tinyint      NOT NULL,
-    opening_time     longtext DEFAULT NULL
+    opening_time     longtext     DEFAULT NULL
 );
 
 CREATE TABLE menu
@@ -41,8 +41,8 @@ CREATE TABLE menu
     menu_id          int(11)        NOT NULL PRIMARY KEY AUTO_INCREMENT,
     menu_name        varchar(255)   NOT NULL,
     menu_description longtext       NOT NULL,
-    image_name       varchar(255) DEFAULT NULL,
-    updated_at       datetime     DEFAULT NULL,
+    image_name       varchar(255)   DEFAULT NULL,
+    updated_at       datetime       DEFAULT NULL,
     price            decimal(10, 2) NOT NULL,
     available        boolean        NOT NULL
 );
