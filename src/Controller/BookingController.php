@@ -22,7 +22,7 @@ class BookingController extends AbstractController
     {
         $dateTime = new \DateTimeImmutable($date);
 
-        $remainingPlaces = $bookingService->getRemainingPlaces(RushType::fromDateTime($dateTime));
+        $remainingPlaces = $bookingService->getRemainingPlaces(RushType::fromDateTime($dateTime), $dateTime);
         if (!$bookingService->isBookingPossible($nbGuests, $remainingPlaces)) {
             return $this->redirectToRoute('home');
         }
