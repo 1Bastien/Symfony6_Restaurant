@@ -8,32 +8,38 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use App\Form\BookingFormType;
 use App\Entity\Booking;
-use App\Entity\Restaurant;
+use App\Enum\RushType;
 use App\Repository\RestaurantRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
+use App\Service\BookingService;
+
 class BookingController extends AbstractController
 {
     #[Route('/booking/{date}/{nbGuests}', name: 'booking_customer')]
-    public function bookingCustomer(int $nbGuests, string $date, Request $request, EntityManagerInterface $manager, RestaurantRepository $restaurantRepository): Response
+    public function bookingCustomer(int $nbGuests, string $date, Request $request, EntityManagerInterface $manager, RestaurantRepository $restaurantRepository, BookingService $bookingService): Response
     {
+        $dateTime = new \DateTimeImmutable($date);
+
+        $remainingPlaces = $bookingService->getRemainingPlaces(RushType::fromDateTime($dateTime));
+        if (!$bookingService->isBookingPossible($nbGuests, $remainingPlaces)) {
+            return $this->redirectToRoute('home');
+        }
+        
         $booking = new Booking();
-        $dateTime = new \DateTime($date);
-
-        $id = 1;
-        $restaurant = $manager->getRepository(Restaurant::class)->find($id);
-
-        $booking->setCustomer($this->getUser());
-        $booking->setRestaurant($restaurant);
-        $booking->setDate($dateTime);
-        $booking->setNbGuests($nbGuests);
+        $booking
+            ->setCustomer($this->getUser())
+            ->setRestaurant($restaurantRepository->findById(1)[0])
+            ->setDate($dateTime)
+            ->setNbGuests($nbGuests);
 
         $form = $this->createForm(BookingFormType::class, $booking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $booking = $form->getData();
+
             $manager->persist($booking);
             $manager->flush();
 

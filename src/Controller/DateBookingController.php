@@ -2,39 +2,35 @@
 
 namespace App\Controller;
 
+use App\Form\DateBookingFormType;
+use App\Enum\RushType;
+use App\Repository\CustomerRepository;
+use App\Repository\RestaurantRepository;
+use App\Service\BookingService;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-use App\Form\DateBookingFormType;
-use App\Entity\Booking;
-use App\Entity\Restaurant;
-use App\Entity\Customer;
-use App\Repository\RestaurantRepository;
-
-use Doctrine\ORM\EntityManagerInterface;
 
 class DateBookingController extends AbstractController
 {
     #[Route('/bookingDate', name: 'booking')]
-    public function index(Request $request, EntityManagerInterface $manager, RestaurantRepository $restaurantRepository)
+    public function index(Request $request, CustomerRepository $customerRepository, RestaurantRepository $restaurantRepository, BookingService $bookingService)
     {
-        $formDate = $this->createForm(DateBookingFormType::class);
-        $formDate->handleRequest($request);
-        
         $date = new \DateTimeImmutable();
-        $nbGuests = 1;
-
-        $remainingPlacesLunch = 0;
-        $remainingPlacesDinner = 0;
-        $rush = '';
         
         $selectDate = false;
         $validDate = false;
-
-        if ($this->getUser()){
-            $nbGuests = $manager->getRepository(Customer::class)->find($this->getUser())->getNbGuests();
+        
+        $nbGuests = 1;
+        if ($this->getUser()) {
+            $nbGuests = $customerRepository->find($this->getUser())->getNbGuests();
         }
+
+        $formDate = $this->createForm(DateBookingFormType::class);
+        $formDate->handleRequest($request);
 
         if ($formDate->isSubmitted() && $formDate->isValid()) {
 
@@ -42,46 +38,26 @@ class DateBookingController extends AbstractController
             $minute = substr($formDate->getData()['hour'], 3, 2);
             $date = $formDate->getData()['date']->setTime($hour, $minute);
             $nbGuests = $formDate->getData()['nbGuests'];
-
-            $startLunchRush = $date->setTime(12, 0);
-            $endLunchRush = $date->setTime(14, 0);
-            $bookingsLunch = $manager->getRepository(Booking::class)->findByRush($startLunchRush, $endLunchRush);
-            $totalGuestsLunch = array_reduce($bookingsLunch, function ($previous, $booking) {
-                return $previous + $booking->getNbGuests();
-            }, 0);
-
-            $startDinnerRush = $date->setTime(19, 0);
-            $endDinnerRush = $date->setTime(21, 0);
-            $bookingsDinner = $manager->getRepository(Booking::class)->findByRush($startDinnerRush, $endDinnerRush);
-            $totalGuestsDinner = array_reduce($bookingsDinner, function ($previous, $booking) {
-                return $previous + $booking->getNbGuests();
-            }, 0);
-
-            $seatingCapacity = $manager->getRepository(Restaurant::class)->findById(1)[0]->getSeatingCapacity();
-            $remainingPlacesLunch = $seatingCapacity - $totalGuestsLunch;
-            $remainingPlacesDinner = $seatingCapacity - $totalGuestsDinner;
-
-            if ($hour === '12' || $hour === '13') {
-                $rush = 'lunch';
-            } else if ($hour === '19' || $hour === '20') {
-                $rush = 'dinner';
-            }
-
-            if ((($rush === 'lunch') && ($nbGuests <= $remainingPlacesLunch)) || (($rush === 'dinner') && ($nbGuests <= $remainingPlacesDinner))) {
-                $validDate = true;
-            }
-
+    
             $selectDate = true;
+
+            $remainingPlaces = $bookingService->getRemainingPlaces(RushType::fromHour($hour));
+
+            $validDate = $bookingService->isBookingPossible($nbGuests, $remainingPlaces);
         }
 
         return $this->render('date_booking/index.html.twig', [
             'DateBookingFormType' => $formDate->createView(),
+
             'date' => $date->format('d-m-Y H:i:s'),
             'nbGuests' => $nbGuests,
-            'remainingPlacesLunch' => $remainingPlacesLunch,
-            'remainingPlacesDinner' => $remainingPlacesDinner,
+
+            'remainingPlacesLunch' => $bookingService->getRemainingPlaces(RushType::MIDI),
+            'remainingPlacesDinner' => $bookingService->getRemainingPlaces(RushType::SOIR),
+
             'selectDate' => $selectDate,
             'validDate' => $validDate,
+
             'Restaurant' => $restaurantRepository->findAll(),
         ]);
     }
