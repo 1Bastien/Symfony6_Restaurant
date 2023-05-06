@@ -24,7 +24,7 @@ class BookingController extends AbstractController
 
         $remainingPlaces = $bookingService->getRemainingPlaces(RushType::fromDateTime($dateTime), $dateTime);
         if (!$bookingService->isBookingPossible($nbGuests, $remainingPlaces)) {
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('booking');
         }
         
         $booking = new Booking();
