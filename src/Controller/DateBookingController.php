@@ -52,8 +52,8 @@ class DateBookingController extends AbstractController
             'date' => $date->format('d-m-Y H:i:s'),
             'nbGuests' => $nbGuests,
 
-            'remainingPlacesLunch' => $bookingService->getRemainingPlaces(RushType::MIDI, $date),
-            'remainingPlacesDinner' => $bookingService->getRemainingPlaces(RushType::SOIR, $date),
+            'remainingPlacesLunch' => $bookingService->getRemainingPlaces(RushType::LUNCH, $date),
+            'remainingPlacesDinner' => $bookingService->getRemainingPlaces(RushType::DINNER, $date),
 
             'selectDate' => $selectDate,
             'validDate' => $validDate,
