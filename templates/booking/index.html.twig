@@ -6,6 +6,7 @@
 <main role="main" class="main container-fluid p-4"> 
 <div class="container min-vh-100">
 
+{% if not isBooking %}
 <div class="form-group">
 	<div class="d-flex flex-row align-items-center">
 	    <i class="bi bi-calendar-plus p-2" style="font-size: 2rem"></i>
@@ -33,7 +34,15 @@
 		{{ form_end(BookingFormType) }}
 	</div>
 </div>
-
+{% else %}
+<div class="d-flex flex-column mt-5">
+	<h2 class="d-flex justify-content-center mb-3 h1">Votre réservation a bien été effectuée.</h2>
+	<h3 class="d-flex justify-content-center text-secondary mb-5">Merci de votre confiance !</h3>
+	<a class="d-flex justify-content-center text-decoration-none mt-5" href="{{ path('home')}}">
+		<button type="button" class="btn-home btn-lg btn">Retourner à l'accueil</button>
+	</a>
+</div>
+{% endif %}
 </div>
 </main>
 {% endblock %}

@@ -37,18 +37,21 @@ class BookingController extends AbstractController
         $form = $this->createForm(BookingFormType::class, $booking);
         $form->handleRequest($request);
 
+        $isBooking = false;
+
         if ($form->isSubmitted() && $form->isValid()) {
             $booking = $form->getData();
 
             $manager->persist($booking);
             $manager->flush();
-
-            return $this->redirectToRoute('home');
+            
+            $isBooking = true;
         }
 
         return $this->render('booking/index.html.twig', [
             'BookingFormType' => $form->createView(),
             'Restaurant' => $restaurantRepository->findAll(),
+            'isBooking' => $isBooking,
         ]);
     }
 }
