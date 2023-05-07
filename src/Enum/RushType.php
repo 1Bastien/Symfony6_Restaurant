@@ -7,7 +7,7 @@ use DateTimeImmutable;
 enum RushType
 {
     private const LUNCH_HOURS = [12, 13, 14];
-    private const DINNER_HOURS = [18, 19, 20];
+    private const DINNER_HOURS = [19, 20, 21];
 
     case LUNCH;
     case DINNER;
