@@ -40,9 +40,20 @@ body {
 #BgHome a {
     z-index: 99;
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
+    height: 7%;
+    width: 12%;
+    //border: solid 5px #FEFBE9;
+    color: #FEFBE9;
+    font-size: 250%;
+    padding-bottom: 4%;
+    border: solid 5px #FEFBE9;
+
+    &:hover {
+        border: solid 7px #FEFBE9;
+    }
 }
 
 #BgHome i {
@@ -80,16 +91,6 @@ body {
     background-size: cover;
     background-position: center;
     aspect-ratio: 1 / 1;
-}
-
-.btn-home {
-    color: #FEFBE9;
-    background-color: $success;
-}
-
-.btn-home:hover {
-    background-color: black;
-    color: #FEFBE9;
 }
 
 header {
