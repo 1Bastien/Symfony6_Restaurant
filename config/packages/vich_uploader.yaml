@@ -6,6 +6,6 @@ vich_uploader:
 
     mappings:
         menu_pictures:
-            uri_prefix: /media
-            upload_destination: '%kernel.project_dir%/public/media'
+            uri_prefix: /media/photo
+            upload_destination: '%kernel.project_dir%/public/media/photo'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
