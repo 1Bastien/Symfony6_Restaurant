@@ -4,6 +4,12 @@ Projet étudiant d'un site de restaurant "Le Quai Antique", dans le cadre de l'E
 
 Ce projet utilise Symfony 6.2 avec symfony CLI 5.5.1, MAMP pour le serveur mySQL ainsi que PHP 8.2.3.
 
+## Contexte
+
+Projet étudiant d'une application web de gestion du restaurant "Le Quai Antique". 
+Un des employés a accès à une page d'administration pour modifier les informations du site (Menu, horaires, ...). 
+Le site sert aussi à la gestion des réservations des clients. Un client peut créer son compte, modifier ses informations, réserver une table. 
+La gestion des réservations est gérée en fonction du nombre de places disponibles, modifiable par l'administrateur.
 
 ## Installation en local 
 
